@@ -60,22 +60,39 @@ item_t top(Stack &s){
     return -1000;
 }
 
+void change(Stack &s, item_t x)
+{
+   while (x)
+   {
+       s.tab[++s.top] = x % 2;
+       x/=2;
+   }
+    cout << "Liczba zapisana w systemie dwojkowym: ";
+    for (int i=s.top; i>=0;i--) cout << s.tab[i];
+    
+}
 
 int main()
 {
     Stack s;
     create(s);
-    int x;
+    item_t x;
     x = pop(s);
     cout << x <<endl;
-    push(s, 11);
-    push(s, 55);
-    push(s, 31);
-    push(s, -15);
-    cout << "Na szczycie stosu jest " << top(s) <<endl;
-    cout << "Operacja pop: " << pop(s) << endl;
-    cout << "Operacja pop: " << pop(s) << endl;
-    cout << "Na szczycie stosu jest " << top(s) <<endl;
+//    push(s, 11);
+//    push(s, 55);
+//    push(s, 31);
+//    push(s, -15);
+//    cout << "Na szczycie stosu jest " << top(s) <<endl;
+//    cout << "Operacja pop: " << pop(s) << endl;
+//    cout << "Operacja pop: " << pop(s) << endl;
+//    cout << "Na szczycie stosu jest " << top(s) <<endl;
+    
+    item_t dziesietna;
+    cout << "Podaj liczbe dziesietna: " << endl;
+    cin >> dziesietna;
+    
+    change(s, dziesietna);
 
     //...
     return 0;
