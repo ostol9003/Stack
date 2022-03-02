@@ -60,7 +60,7 @@ item_t top(Stack &s){
         return -1000;
 }
 
-void change(Stack &s, item_t x)
+void decToBin(Stack &s, item_t x)
 {
     while (x)
     {
@@ -89,8 +89,10 @@ void printStack(Stack &s)
 }
 int main()
 {
-    Stack s;
+    Stack s,sdtb;
     create(s);
+    create(sdtb);
+    
     item_t x;
     x = pop(s);
     cout << x <<endl;
@@ -102,23 +104,25 @@ int main()
     push(s, 311);
     push(s, -151);
     cout << "Na szczycie stosu jest " << top(s) <<endl;
-    //    cout << "Operacja pop: " << pop(s) << endl;
-    //    cout << "Operacja pop: " << pop(s) << endl;
-    //    cout << "Na szczycie stosu jest " << top(s) <<endl;
-    //
-    //    item_t dziesietna;
-    //    cout << "Podaj liczbe dziesietna: " << endl;
-    //    cin >> dziesietna;
-    //
-    //    change(s, dziesietna);
+    cout << "Operacja pop: " << pop(s) << endl;
+    cout << "Operacja pop: " << pop(s) << endl;
+    cout << "Na szczycie stosu jest " << top(s) <<endl;
+    
+    
+    // ZADANIE DOMOWE
+    
     
     cout << "Wyswietlam stos przed odwroceniem: " << endl;
     printStack(s);
     reverse(s);
     cout << "\nWyswietlam stos po odwroceniu: " << endl;
     printStack(s);
-
     
+    item_t dziesietna;
+    cout << "\n\nPodaj liczbe dziesietna: " << endl;
+    cin >> dziesietna;
+    
+    decToBin(sdtb, dziesietna);
     cout<<endl;
     
     
