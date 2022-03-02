@@ -17,61 +17,76 @@ struct Stack
 };
 
 void create(Stack &s){
-   s.top = -1;
+    s.top = -1;
 }
 
 int isEmpty(Stack s){
-  if(s.top == -1) return 1;
-  return 0;
-
-  //return (s.top == -1);
-
+    if(s.top == -1) return 1;
+    return 0;
+    
+    //return (s.top == -1);
+    
 }
 
 int isFull(Stack s){
-  if(s.top==LIMIT-1)return 1;
-  return 0;
+    if(s.top==LIMIT-1)return 1;
+    return 0;
 }
 
 void push(Stack &s, item_t x){
-  if (!isFull(s))
-  {
-    s.top=s.top+1;
-    s.tab[s.top]=x;
-  }
+    if (!isFull(s))
+    {
+        s.top=s.top+1;
+        s.tab[s.top]=x;
+    }
 }
 
 item_t pop(Stack &s){
- if (!isEmpty(s))
-  {
-    s.top=s.top-1;
-    return s.tab[s.top+1];
-  }
-  else
-    return -1000;
+    if (!isEmpty(s))
+    {
+        s.top=s.top-1;
+        return s.tab[s.top+1];
+    }
+    else
+        return -1000;
 }
 
 item_t top(Stack &s){
- if (!isEmpty(s))
-  {
-    return s.tab[s.top];
-  }
-  else
-    return -1000;
+    if (!isEmpty(s))
+    {
+        return s.tab[s.top];
+    }
+    else
+        return -1000;
 }
 
 void change(Stack &s, item_t x)
 {
-   while (x)
-   {
-       s.tab[++s.top] = x % 2;
-       x/=2;
-   }
+    while (x)
+    {
+        s.tab[++s.top] = x % 2;
+        x/=2;
+    }
     cout << "Liczba zapisana w systemie dwojkowym: ";
     for (int i=s.top; i>=0;i--) cout << s.tab[i];
     
 }
 
+void reverse(Stack &s)
+{
+    item_t tmp;
+    for(int i=0;i<=(s.top/2);i++)
+    {
+        tmp=s.tab[i];
+        s.tab[i]=s.tab[s.top-i];
+        s.tab[s.top-i]=tmp;
+    }
+}
+void printStack(Stack &s)
+{
+    for(int i=0;i<=s.top;i++)
+        cout<<s.tab[i]<<", ";
+}
 int main()
 {
     Stack s;
@@ -79,21 +94,33 @@ int main()
     item_t x;
     x = pop(s);
     cout << x <<endl;
-//    push(s, 11);
-//    push(s, 55);
-//    push(s, 31);
-//    push(s, -15);
-//    cout << "Na szczycie stosu jest " << top(s) <<endl;
-//    cout << "Operacja pop: " << pop(s) << endl;
-//    cout << "Operacja pop: " << pop(s) << endl;
-//    cout << "Na szczycie stosu jest " << top(s) <<endl;
+    push(s, 11);
+    push(s, 55);
+    push(s, 31);
+    push(s, -15);
+    push(s, 551);
+    push(s, 311);
+    push(s, -151);
+    cout << "Na szczycie stosu jest " << top(s) <<endl;
+    //    cout << "Operacja pop: " << pop(s) << endl;
+    //    cout << "Operacja pop: " << pop(s) << endl;
+    //    cout << "Na szczycie stosu jest " << top(s) <<endl;
+    //
+    //    item_t dziesietna;
+    //    cout << "Podaj liczbe dziesietna: " << endl;
+    //    cin >> dziesietna;
+    //
+    //    change(s, dziesietna);
     
-    item_t dziesietna;
-    cout << "Podaj liczbe dziesietna: " << endl;
-    cin >> dziesietna;
-    
-    change(s, dziesietna);
+    cout << "Wyswietlam stos przed odwroceniem: " << endl;
+    printStack(s);
+    reverse(s);
+    cout << "\nWyswietlam stos po odwroceniu: " << endl;
+    printStack(s);
 
-    //...
+    
+    cout<<endl;
+    
+    
     return 0;
 }
